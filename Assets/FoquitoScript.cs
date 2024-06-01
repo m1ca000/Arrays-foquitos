@@ -6,6 +6,7 @@ public class FoquitoScript : MonoBehaviour
 {
     [SerializeField] GameObject[] colors;
     public int currentLightIndex =-1;
+    int contador = 0;
 
     void Start()
     {
@@ -24,9 +25,17 @@ public class FoquitoScript : MonoBehaviour
         if (currentLightIndex >= colors.Length)
         {
             currentLightIndex = 0;
+            contador++;
         }
         DeactivateAllLights();
-        colors[currentLightIndex].SetActive(true);
+        if (contador == 3)
+        {
+            CancelInvoke();
+        }
+        else 
+        { 
+            colors[currentLightIndex].SetActive(true); 
+        }
     }
 
     public void ActivatePreviousLight()
